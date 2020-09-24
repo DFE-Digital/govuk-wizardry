@@ -1,0 +1,16 @@
+en:
+  helpers:
+    label:
+      rating:
+        full_name: What is your full name?
+        name: What should we call you?
+        feedback: What do you think about the product?
+        email: What's your email address?
+
+    legend:
+      rating:
+        purchase_date: When did you buy the item?
+
+    hint:
+      rating:
+        name: This is how your name will appear in emails
