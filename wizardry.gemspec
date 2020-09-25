@@ -30,6 +30,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "rspec-expectations"
+  spec.add_development_dependency "shoulda-matchers"
   spec.add_development_dependency "pry-rails"
   spec.add_development_dependency "pry-byebug"
+  spec.add_development_dependency "rails-controller-testing"
 end
