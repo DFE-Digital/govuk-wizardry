@@ -4,8 +4,17 @@ en:
       rating:
         full_name: What is your full name?
         name: What should we call you?
+
+        address_1: Address line one
+        address_2: Address line two
+
         feedback: What do you think about the product?
         email: What's your email address?
+        phone: What's your phone number?
+
+        rating: How do you rate our service?
+
+        customer_type: Are you a new or existing customer?
 
     legend:
       rating:

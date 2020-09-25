@@ -6,6 +6,14 @@ module Wizardry
       def name
         :check_your_answers
       end
+
+      def title
+        'Check your answers'
+      end
+
+      def questions
+        []
+      end
     end
   end
 end

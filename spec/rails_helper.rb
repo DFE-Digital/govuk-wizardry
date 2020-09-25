@@ -1,3 +1,5 @@
+ENV['RAILS_ENV'] ||= 'test'
+
 require 'rails/all'
 require 'rspec/expectations'
 require 'shoulda-matchers'
