@@ -86,14 +86,14 @@ end
 ### Rendering
 
 To add the wizard content to your `edit` template, the gem comes with a
-`wizardry_form` helper. Additionally, the wizard object is available for the
+`wizardry_content` helper. Additionally, the wizard object is available for the
 developer to interact with in the `@wizard` instance variable. Here we are
 using it to set the heading.
 
 ```erb
 <h1 class="govuk-heading-l"><%= @wizard.current_page.name.capitalize %></h1>
 
-<%= wizardry_form %>
+<%= wizardry_content %>
 ```
 
 ### Special pages
