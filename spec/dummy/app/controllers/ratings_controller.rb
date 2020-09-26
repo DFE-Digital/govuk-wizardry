@@ -43,5 +43,6 @@ class RatingsController < ApplicationController
         ]
       ),
       Wizardry::Pages::CheckYourAnswersPage.new,
+      Wizardry::Pages::CompletionPage.new,
     ]
 end

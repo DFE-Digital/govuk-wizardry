@@ -26,6 +26,10 @@ RSpec.describe('Completing the wizard', type: :feature) do
     # page 5: check your answers
     then_i_should_be_on_the_check_your_answers_page
     and_my_details_should_have_been_persisted
+    and_i_complete_the_wizard
+
+    # page 6: completion
+    then_i_should_be_on_the_completion_page
   end
 
   def given_i_begin_the_wizard
@@ -77,6 +81,8 @@ RSpec.describe('Completing the wizard', type: :feature) do
     click_on 'Continue'
   end
 
+  alias_method :and_i_complete_the_wizard, :and_i_submit_the_form
+
   def then_i_should_be_on_the_address_page
     expect(page.current_path).to eql('/rating/address')
   end
@@ -91,6 +97,7 @@ RSpec.describe('Completing the wizard', type: :feature) do
 
   def then_i_should_be_on_the_check_your_answers_page
     expect(page.current_path).to eql('/rating/check_your_answers')
+    expect(page).to have_css('h1', text: 'Check your answers')
   end
 
   def and_my_details_should_have_been_persisted
@@ -99,5 +106,9 @@ RSpec.describe('Completing the wizard', type: :feature) do
     responses.each_pair do |field, value|
       expect(last_rating.send(field)).to eql(value)
     end
+  end
+
+  def then_i_should_be_on_the_completion_page
+    expect(page).to have_css('h1', text: 'Completed')
   end
 end
