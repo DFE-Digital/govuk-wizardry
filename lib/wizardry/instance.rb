@@ -14,7 +14,11 @@ module Wizardry
     delegate :pages, :page_names, to: :framework
 
     def next_page
-      pages.at(pages.index(current_page) + 1)
+      pages.at(pages.index(current_page) + 1).tap do |page|
+        if page.is_a?(Wizardry::Pages::CompletionPage)
+          # do finished callback
+        end
+      end
     end
   end
 end

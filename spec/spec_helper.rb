@@ -1,5 +1,6 @@
 require 'pry'
 require 'pry-byebug'
+require 'support/shared/setup_simple_wizard'
 
 require File.expand_path("../dummy/config/environment", __FILE__)
 

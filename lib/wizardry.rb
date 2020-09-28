@@ -5,6 +5,7 @@ require "wizardry/instance"
 
 require "wizardry/pages/page"
 require "wizardry/pages/check_your_answers_page"
+require "wizardry/pages/completion_page"
 
 require "wizardry/questions/answer"
 require "wizardry/questions/short_answer"
@@ -63,7 +64,11 @@ module Wizardry
     end
 
     def object_params
-      params.require(@wizard.framework.class_name.constantize.model_name.param_key).permit(@wizard.current_page.question_names)
+      param_key = @wizard.framework.class_name.constantize.model_name.param_key
+
+      params.require(param_key).permit(@wizard.current_page.question_names)
+    rescue ActionController::ParameterMissing
+      { param_key => last_completed_step_params }
     end
 
     def last_completed_step_params

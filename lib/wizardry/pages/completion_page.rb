@@ -1,14 +1,12 @@
 module Wizardry
   module Pages
-    class CheckYourAnswersPage
-      # TODO does this need any configuration?
-      #
+    class CompletionPage
       def name
-        :check_your_answers
+        :completion
       end
 
       def title
-        'Check your answers'
+        ''
       end
 
       def questions

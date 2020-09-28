@@ -39,11 +39,10 @@ class RatingsController < ApplicationController
           Wizardry::Questions::ShortAnswer.new(:customer_type),
           Wizardry::Questions::Date.new(:purchase_date),
           Wizardry::Questions::LongAnswer.new(:feedback),
-          Wizardry::Questions::Radios.new(:rating, {
-            1 => 'Dire', 2 => 'Alright', 3 => 'Average', 4 => 'Decent', 5 => 'Amazing'
-          })
+          Wizardry::Questions::Radios.new(:rating, Rating::RATINGS)
         ]
       ),
       Wizardry::Pages::CheckYourAnswersPage.new,
+      Wizardry::Pages::CompletionPage.new,
     ]
 end
