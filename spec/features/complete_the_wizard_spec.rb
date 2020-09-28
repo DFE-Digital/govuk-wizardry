@@ -33,7 +33,7 @@ RSpec.describe('Completing the wizard', type: :feature) do
   end
 
   def given_i_begin_the_wizard
-    visit "rating/identification"
+    visit 'rating/identification'
   end
 
   def responses
