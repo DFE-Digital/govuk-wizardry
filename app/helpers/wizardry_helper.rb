@@ -1,7 +1,7 @@
 module WizardryHelper
   def wizardry_content
     case @wizard.current_page
-    when Wizardry::Pages::Page
+    when Wizardry::Pages::QuestionPage
       render_form
     when Wizardry::Pages::CheckYourAnswersPage
       safe_join([render_check_your_answers, render_form])

@@ -7,13 +7,13 @@ RSpec.shared_context('setup simple wizard') do
       edit_path_helper: :ratings_page_path,
       update_path_helper: :ratings_path,
       pages: [
-        Wizardry::Pages::Page.new(
+        Wizardry::Pages::QuestionPage.new(
           :page_one, title: 'Page One', questions: [Wizardry::Questions::ShortAnswer.new(:field_one)]
         ),
-        Wizardry::Pages::Page.new(
+        Wizardry::Pages::QuestionPage.new(
           :page_two, title: 'Page One', questions: [Wizardry::Questions::ShortAnswer.new(:field_two)]
         ),
-        Wizardry::Pages::Page.new(
+        Wizardry::Pages::QuestionPage.new(
           :page_three, title: 'Page One', questions: [Wizardry::Questions::ShortAnswer.new(:field_three)]
         ),
         Wizardry::Pages::CheckYourAnswersPage.new,

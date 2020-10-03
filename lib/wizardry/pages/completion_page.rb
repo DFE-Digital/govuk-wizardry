@@ -1,6 +1,6 @@
 module Wizardry
   module Pages
-    class CompletionPage
+    class CompletionPage < Page
       def name
         :completion
       end
@@ -10,6 +10,10 @@ module Wizardry
       end
 
       def questions
+        []
+      end
+
+      def next_pages
         []
       end
     end

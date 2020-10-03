@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
     edit_path_helper: :ratings_page_path,
     update_path_helper: :ratings_path,
     pages: [
-      Wizardry::Pages::Page.new(
+      Wizardry::Pages::QuestionPage.new(
         :identification,
         title: 'Who are you?',
         questions: [
@@ -14,7 +14,7 @@ class RatingsController < ApplicationController
           Wizardry::Questions::EmailAddress.new(:name)
         ]
       ),
-      Wizardry::Pages::Page.new(
+      Wizardry::Pages::QuestionPage.new(
         :address,
         title: 'Address',
         questions: [
@@ -22,9 +22,20 @@ class RatingsController < ApplicationController
           Wizardry::Questions::ShortAnswer.new(:address_2),
           Wizardry::Questions::ShortAnswer.new(:town),
           Wizardry::Questions::ShortAnswer.new(:postcode),
-        ]
+        ],
+        next_pages: [
+          Wizardry::Routing::NextPage.new(:london_borough, proc { |o| o.town == "London" })
+        ],
       ),
-      Wizardry::Pages::Page.new(
+      Wizardry::Pages::QuestionPage.new(
+        :london_borough,
+        branch: true,
+        title: 'Which borough of London do you live in?',
+        questions: [
+          Wizardry::Questions::ShortAnswer.new(:london_borough),
+        ],
+      ),
+      Wizardry::Pages::QuestionPage.new(
         :contact_details,
         title: 'Contact details',
         questions: [
@@ -32,7 +43,7 @@ class RatingsController < ApplicationController
           Wizardry::Questions::EmailAddress.new(:email),
         ]
       ),
-      Wizardry::Pages::Page.new(
+      Wizardry::Pages::QuestionPage.new(
         :feedback,
         title: 'What did you think about our service?',
         questions: [

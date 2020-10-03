@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_151347) do
     t.string "address_2"
     t.string "town"
     t.string "postcode"
+    t.string "london_borough"
     t.string "phone"
     t.string "email"
     t.string "customer_type"

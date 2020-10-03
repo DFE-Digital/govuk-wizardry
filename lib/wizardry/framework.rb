@@ -19,5 +19,9 @@ module Wizardry
     def page_names
       pages.map(&:name)
     end
+
+    def trunk_pages
+      pages.reject { |p| p.branch? }
+    end
   end
 end

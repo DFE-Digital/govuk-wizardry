@@ -11,13 +11,27 @@ module Wizardry
       raise ActionController::RoutingError.new('Wizard page not found') unless @current_page
     end
 
-    delegate :pages, :page_names, to: :framework
-
     def next_page
-      pages.at(pages.index(current_page) + 1).tap do |page|
-        if page.is_a?(Wizardry::Pages::CompletionPage)
-          # do finished callback
-        end
+      next_branch_page || next_trunk_page
+    end
+
+  private
+
+    def next_branch_page
+      current_page.next_pages.detect do |page|
+        page.condition.blank? || page.condition.call(object)
+      end
+    end
+
+    # if the branch ends continue along the trunk from
+    # where we left off
+    def next_trunk_page
+      current_page_index = framework.pages.index(current_page)
+
+      framework.pages.detect.with_index do |p, i|
+        next if p.branch?
+
+        i > current_page_index
       end
     end
   end

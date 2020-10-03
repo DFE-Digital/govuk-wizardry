@@ -4,6 +4,7 @@ require "wizardry/framework"
 require "wizardry/instance"
 
 require "wizardry/pages/page"
+require "wizardry/pages/question_page"
 require "wizardry/pages/check_your_answers_page"
 require "wizardry/pages/completion_page"
 
@@ -14,6 +15,8 @@ require "wizardry/questions/radios"
 require "wizardry/questions/telephone_number"
 require "wizardry/questions/email_address"
 require "wizardry/questions/date"
+
+require "wizardry/routing/next_page"
 
 require "govuk_design_system_formbuilder"
 
