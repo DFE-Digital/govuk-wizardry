@@ -21,7 +21,7 @@ module Wizardry
     end
 
     def trunk_pages
-      pages.reject { |p| p.branch? }
+      pages.reject(&:branch?)
     end
   end
 end

@@ -1,10 +1,10 @@
 module Wizardry
   module Routing
     class NextPage
-      attr_reader :next_page, :condition
+      attr_reader :name, :condition
 
-      def initialize(next_page, condition)
-        @next_page = next_page
+      def initialize(name, condition)
+        @name      = name
         @condition = condition
       end
     end

@@ -28,8 +28,8 @@ module Wizardry
     def next_trunk_page
       current_page_index = framework.pages.index(current_page)
 
-      framework.pages.detect.with_index do |p, i|
-        next if p.branch?
+      framework.pages.detect.with_index do |page, i|
+        next if page.branch?
 
         i > current_page_index
       end
