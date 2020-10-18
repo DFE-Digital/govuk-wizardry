@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe(WizardryHelper, type: :helper) do
   include_context 'setup simple wizard'
+  let(:object) { SomeObject.new(field_one: 'abc', field_two: 'def', field_three: 'ghi') }
 
   describe 'rendering the check your answers page' do
     let(:wizard) { Wizardry::Instance.new(object: object, framework: framework, current_page: :check_your_answers) }

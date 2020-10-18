@@ -1,5 +1,4 @@
 RSpec.shared_context('setup simple wizard') do
-  let(:object) { SomeObject.new(field_one: 'abc', field_two: 'def', field_three: 'ghi') }
   let(:framework) do
     Wizardry::Framework.new(
       name: 'spec_wizard',
@@ -11,10 +10,10 @@ RSpec.shared_context('setup simple wizard') do
           :page_one, title: 'Page One', questions: [Wizardry::Questions::ShortAnswer.new(:field_one)]
         ),
         Wizardry::Pages::QuestionPage.new(
-          :page_two, title: 'Page One', questions: [Wizardry::Questions::ShortAnswer.new(:field_two)]
+          :page_two, title: 'Page Two', questions: [Wizardry::Questions::ShortAnswer.new(:field_two)]
         ),
         Wizardry::Pages::QuestionPage.new(
-          :page_three, title: 'Page One', questions: [Wizardry::Questions::ShortAnswer.new(:field_three)]
+          :page_three, title: 'Page Three', questions: [Wizardry::Questions::ShortAnswer.new(:field_three)]
         ),
         Wizardry::Pages::CheckYourAnswersPage.new,
         Wizardry::Pages::CompletionPage.new,
@@ -27,4 +26,8 @@ class SomeObject
   include ActiveModel::Model
 
   attr_accessor :field_one, :field_two, :field_three
+
+  validates :field_one, presence: true, on: :page_one
+  validates :field_two, presence: true, on: :page_two
+  validates :field_three, presence: true, on: :page_three
 end
