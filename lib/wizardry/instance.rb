@@ -8,7 +8,7 @@ module Wizardry
       @framework    = framework
       @current_page = @framework.pages.detect { |p| p.name == current_page.to_sym }
 
-      raise ActionController::RoutingError.new('Wizard page not found') unless @current_page
+      raise(ActionController::RoutingError, %(Wizard page #{current_page} not found)) unless @current_page
     end
 
     def next_page(page = current_page)
@@ -18,9 +18,14 @@ module Wizardry
     # find all the pages we've visited on our way to
     # the current page
     def route(page = framework.pages.first)
-      [].tap do |completed|
+      @route ||= route!(page)
+    end
+
+    def route!(page = framework.pages.first)
+      @route = [].tap do |completed|
         until page == current_page
           completed << page
+
           page = next_page(page)
         end
       end
@@ -33,8 +38,8 @@ module Wizardry
   private
 
     def next_branch_page(page)
-      page.next_pages.detect do |page|
-        page.condition.blank? || page.condition.call(object)
+      page.next_pages.detect do |p|
+        p.condition.blank? || p.condition.call(object)
       end
     end
 
@@ -43,8 +48,8 @@ module Wizardry
     def next_trunk_page(page)
       page_index = framework.pages.index(page)
 
-      framework.pages.detect.with_index do |page, i|
-        next if page.branch?
+      framework.pages.detect.with_index do |p, i|
+        next if p.branch?
 
         i > page_index
       end
