@@ -1,13 +1,21 @@
 module Wizardry
   module Pages
     class Page
-      attr_accessor :branch
+      attr_reader :pages
 
-      def initialize(branch: false)
-        @branch = branch
+      def initialize(pages: [])
+        @pages  = pages
+        @branch = false
       end
 
-      alias_method :branch?, :branch
+      # mark this page as being a branch page
+      def branch!
+        @branch = true
+      end
+
+      def branch?
+        @branch
+      end
     end
   end
 end

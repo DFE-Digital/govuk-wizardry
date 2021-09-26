@@ -38,15 +38,13 @@ module Wizardry
     end
 
     def update
-      next_page_name = @wizard.next_page.name
-
       Rails.logger.debug("🧙 Object valid, saving and moving on")
       @wizard.object.assign_attributes(object_params.merge(last_completed_step_params))
 
       if @wizard.object.save(context: @wizard.current_page.name)
         Rails.logger.debug("🧙 Object valid, saving and moving on")
 
-        redirect_to send(@wizard.framework.edit_path_helper, next_page_name)
+        redirect_to send(@wizard.framework.edit_path_helper, @wizard.next_page.name)
       else
         Rails.logger.debug("🧙 Object not valid, try again")
 

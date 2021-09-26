@@ -6,7 +6,7 @@ module Wizardry
 
     def initialize(name:, pages:, class_name:, edit_path_helper:, update_path_helper:)
       @name               = name
-      @pages              = pages
+      @pages              = setup_pages(pages)
       @class_name         = class_name
       @edit_path_helper   = edit_path_helper
       @update_path_helper = update_path_helper
@@ -22,6 +22,12 @@ module Wizardry
 
     def trunk_pages
       pages.reject(&:branch?)
+    end
+
+  private
+
+    def setup_pages(pages)
+      pages.map { |page| [page, page.pages.each(&:branch!)].select(&:presence) }.flatten
     end
   end
 end

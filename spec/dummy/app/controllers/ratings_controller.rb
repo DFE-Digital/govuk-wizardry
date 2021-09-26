@@ -23,16 +23,17 @@ class RatingsController < ApplicationController
           Wizardry::Questions::ShortAnswer.new(:town),
           Wizardry::Questions::ShortAnswer.new(:postcode),
         ],
+        pages: [
+          Wizardry::Pages::QuestionPage.new(
+            :london_borough,
+            title: 'Which borough of London do you live in?',
+            questions: [
+              Wizardry::Questions::ShortAnswer.new(:london_borough),
+            ],
+          )
+        ],
         next_pages: [
           Wizardry::Routing::NextPage.new(:london_borough, proc { |o| o.town == "London" })
-        ],
-      ),
-      Wizardry::Pages::QuestionPage.new(
-        :london_borough,
-        branch: true,
-        title: 'Which borough of London do you live in?',
-        questions: [
-          Wizardry::Questions::ShortAnswer.new(:london_borough),
         ],
       ),
       Wizardry::Pages::QuestionPage.new(

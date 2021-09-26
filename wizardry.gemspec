@@ -36,4 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "capybara"
   spec.add_development_dependency "rails-controller-testing"
+  spec.add_development_dependency "webrick"
 end

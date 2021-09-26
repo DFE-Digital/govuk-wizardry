@@ -1,7 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe('Completing the wizard', type: :feature) do
-  scenario "I should be able to complete every step by entering valid answers" do
+RSpec.describe('Completing the wizard: validation', type: :feature) do
+  include_context "common wizard steps"
+
+  scenario "I encounter error messages when my responses aren't valid" do
     given_i_begin_the_wizard
 
     # page 1: identification first attempt
@@ -22,20 +24,8 @@ RSpec.describe('Completing the wizard', type: :feature) do
     @response ||= OpenStruct.new(full_name: 'Milhaus van Houten', name: 'Milhaus')
   end
 
-  def given_i_begin_the_wizard
-    visit 'rating/identification'
-  end
-
-  def and_i_submit_the_form
-    click_on 'Continue'
-  end
-
   def when_i_attempt_to_fill_in_the_identification_page
     # not actually filling anything in
-  end
-
-  def then_i_should_be_on_the_address_page
-    expect(page.current_path).to eql('/rating/address')
   end
 
   def expected_error_messages

@@ -181,6 +181,7 @@ GEM
     thor (1.1.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    webrick (1.7.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -201,6 +202,7 @@ DEPENDENCIES
   rspec-rails
   shoulda-matchers
   sqlite3
+  webrick
 
 BUNDLED WITH
-   2.1.4
+   2.2.22

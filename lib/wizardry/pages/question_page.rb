@@ -1,9 +1,9 @@
 module Wizardry
   module Pages
     class QuestionPage < Page
-      attr_accessor :name, :questions, :title, :next_pages, :branch
+      attr_accessor :name, :questions, :title, :next_pages
 
-      def initialize(name, title: nil, questions:, next_pages: {}, branch: false)
+      def initialize(name, title: nil, questions:, next_pages: {}, pages: [])
         Rails.logger.debug("🧙 Adding page '#{name}' with #{questions&.size || 'no' } questions")
 
         @name       = name
@@ -11,7 +11,7 @@ module Wizardry
         @questions  = questions
         @next_pages = next_pages
 
-        super(branch: branch)
+        super(pages: pages)
       end
 
       def question_names

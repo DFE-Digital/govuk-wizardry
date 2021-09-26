@@ -17,11 +17,13 @@ module Wizardry
 
     # find all the pages we've visited on our way to
     # the current page
-    def route(page = framework.pages.first)
-      @route ||= route!(page)
+    def route(from = framework.pages.first)
+      @route ||= route!(from)
     end
 
-    def route!(page = framework.pages.first)
+    def route!(from = framework.pages.first)
+      page = from
+
       @route = [].tap do |completed|
         until page == current_page
           completed << page
