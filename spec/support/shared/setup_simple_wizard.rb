@@ -25,7 +25,7 @@ end
 class SomeObject
   include ActiveModel::Model
 
-  attr_accessor :field_one, :field_two, :field_three
+  attr_accessor :field_one, :field_two, :field_three, :complete
 
   validates :field_one, presence: true, on: :page_one
   validates :field_two, presence: true, on: :page_two

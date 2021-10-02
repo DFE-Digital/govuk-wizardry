@@ -8,13 +8,20 @@ module Wizardry
         @branch = false
       end
 
-      # mark this page as being a branch page
       def branch!
         @branch = true
       end
 
       def branch?
         @branch
+      end
+
+      def questions
+        []
+      end
+
+      def next_pages
+        []
       end
     end
   end

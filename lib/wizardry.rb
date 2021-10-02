@@ -23,6 +23,8 @@ require "govuk_design_system_formbuilder"
 module Wizardry
   extend ActiveSupport::Concern
 
+  class AlreadyCompletedError < StandardError; end
+
   class_methods do
     def wizard(...)
       define_method(:wizard) do
@@ -32,7 +34,7 @@ module Wizardry
   end
 
   included do
-    before_action :setup_wizard
+    before_action :setup_wizard, :check_wizard
 
     def edit
     end
@@ -53,6 +55,10 @@ module Wizardry
     end
 
   private
+
+    def check_wizard
+      @wizard.ensure_not_complete
+    end
 
     def setup_wizard
       Rails.logger.debug("🧙 Finding or initialising #{wizard.class_name} with '#{identifier}'")

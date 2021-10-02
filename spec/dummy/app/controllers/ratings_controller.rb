@@ -1,7 +1,8 @@
 class RatingsController < ApplicationController
   include Wizardry
 
-  wizard name: 'ratings',
+  wizard(
+    name: 'ratings',
     class_name: 'Rating',
     edit_path_helper: :ratings_page_path,
     update_path_helper: :ratings_path,
@@ -57,4 +58,5 @@ class RatingsController < ApplicationController
       Wizardry::Pages::CheckYourAnswersPage.new,
       Wizardry::Pages::CompletionPage.new,
     ]
+  )
 end
