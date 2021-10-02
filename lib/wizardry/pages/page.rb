@@ -1,18 +1,20 @@
 module Wizardry
   module Pages
     class Page
-      attr_accessor :name, :questions, :title
+      attr_reader :pages
 
-      def initialize(name, title: nil, questions:)
-        Rails.logger.debug("🧙 Adding page '#{name}' with #{questions&.size || 'no' } questions")
-
-        @name      = name
-        @title     = title || name.capitalize
-        @questions = questions
+      def initialize(pages: [])
+        @pages  = pages
+        @branch = false
       end
 
-      def question_names
-        @questions.map(&:name)
+      # mark this page as being a branch page
+      def branch!
+        @branch = true
+      end
+
+      def branch?
+        @branch
       end
     end
   end

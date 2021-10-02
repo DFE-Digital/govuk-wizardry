@@ -16,6 +16,8 @@ en:
 
         customer_type: Are you a new or existing customer?
 
+        london_borough: Which local authority district do you live in?
+
     legend:
       rating:
         purchase_date: When did you buy the item?

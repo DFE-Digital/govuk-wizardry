@@ -1,6 +1,6 @@
 require 'pry'
 require 'pry-byebug'
-require 'support/shared/setup_simple_wizard'
+Dir[File.join('./spec', 'support', '**', '*.rb')].sort.each { |file| require file }
 
 require File.expand_path("../dummy/config/environment", __FILE__)
 

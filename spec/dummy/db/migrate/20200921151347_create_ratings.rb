@@ -12,6 +12,8 @@ class CreateRatings < ActiveRecord::Migration[6.0]
       t.string "town"
       t.string "postcode"
 
+      t.string "london_borough"
+
       t.string "phone"
       t.string "email"
 

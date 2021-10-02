@@ -5,6 +5,7 @@ class RatingFactory
     def initialize(last_completed_step)
       self.last_completed_step = last_completed_step
     end
+
     def attrs
       case self.last_completed_step
       when 'started'
@@ -25,6 +26,7 @@ class RatingFactory
     end
 
   private
+
     def minimim
       { identifier: SecureRandom.uuid }
     end

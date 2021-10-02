@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails", "~> 6.0.3", ">= 6.0.3.3"
+  spec.add_dependency "rails", "~> 6.1.4", ">= 6.0.4"
   spec.add_dependency "govuk_design_system_formbuilder", "~> 2.0.0b4"
 
   spec.add_development_dependency "sqlite3"
@@ -36,4 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "capybara"
   spec.add_development_dependency "rails-controller-testing"
+  spec.add_development_dependency "webrick"
 end

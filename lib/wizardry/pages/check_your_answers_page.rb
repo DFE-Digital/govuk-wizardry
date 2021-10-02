@@ -1,6 +1,6 @@
 module Wizardry
   module Pages
-    class CheckYourAnswersPage
+    class CheckYourAnswersPage < Page
       # TODO does this need any configuration?
       #
       def name
@@ -12,6 +12,10 @@ module Wizardry
       end
 
       def questions
+        []
+      end
+
+      def next_pages
         []
       end
     end
