@@ -70,4 +70,25 @@ describe Wizardry::Framework do
       expect(subject.page(:cherries)).to eql(cherries_page)
     end
   end
+
+  describe "checking the wizard structure on initialize" do
+    let(:check_your_answers_page) { Wizardry::Pages::CheckYourAnswersPage.new }
+    let(:completion_page) { Wizardry::Pages::CompletionPage.new }
+
+    let(:pages) { [check_your_answers_page, check_your_answers_page, completion_page, completion_page] }
+
+    before do
+      allow(Rails.logger).to receive(:warn).and_return(true)
+
+      subject
+    end
+
+    specify "warns when there is more than one check your answers page" do
+      expect(Rails.logger).to have_received(:warn).with(/More than one check your answers page detected/).once
+    end
+
+    specify "warns when there is more than one completion page" do
+      expect(Rails.logger).to have_received(:warn).with(/More than one completion page detected/).once
+    end
+  end
 end
