@@ -40,9 +40,13 @@ module Wizardry
   private
 
     def next_branch_page(page)
-      page.next_pages.detect do |p|
+      next_page = page.next_pages.detect do |p|
         p.condition.blank? || p.condition.call(object)
       end
+
+      return unless next_page
+
+      framework.page(next_page.name)
     end
 
     # if the branch ends continue along the trunk from

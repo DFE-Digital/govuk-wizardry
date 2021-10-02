@@ -3,7 +3,7 @@ module Wizardry
     class NextPage
       attr_reader :name, :condition
 
-      def initialize(name, condition)
+      def initialize(name, condition = nil)
         @name      = name
         @condition = condition
       end
