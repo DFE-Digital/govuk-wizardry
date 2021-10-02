@@ -24,6 +24,14 @@ module Wizardry
       pages.reject(&:branch?)
     end
 
+    def branch_pages
+      pages.select(&:branch?)
+    end
+
+    def page(name)
+      pages.detect { |p| p.name == name }
+    end
+
   private
 
     def setup_pages(pages)
