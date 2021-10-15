@@ -38,13 +38,13 @@ module Wizardry
 
     def page_sense_check
       # should have no more than one check your answers page
-      pages.select { |page| page.is_a?(Wizardry::Pages::CheckYourAnswersPage) }.tap do |check_your_answers_pages|
-        Rails.logger.warn("🧙 More than one check your answers page detected") if check_your_answers_pages.size > 1
+      pages.count { |page| page.is_a?(Wizardry::Pages::CheckYourAnswersPage) }.tap do |check_your_answers_pages|
+        Rails.logger.warn("🧙 More than one check your answers page detected") if check_your_answers_pages > 1
       end
 
       # should have no more than one completion page
-      pages.select { |page| page.is_a?(Wizardry::Pages::CompletionPage) }.tap do |completion_pages|
-        Rails.logger.warn("🧙 More than one completion page detected") if completion_pages.size > 1
+      pages.count { |page| page.is_a?(Wizardry::Pages::CompletionPage) }.tap do |completion_pages|
+        Rails.logger.warn("🧙 More than one completion page detected") if completion_pages > 1
       end
     end
 
