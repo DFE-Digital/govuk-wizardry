@@ -18,6 +18,9 @@ class RatingsController < ApplicationController
       Wizardry::Pages::QuestionPage.new(
         :address,
         title: 'Address',
+        before_edit: ->(object) { Rails.logger.debug("before edit #{object.identifier}") },
+        before_update: ->(object) { Rails.logger.debug("before update #{object.identifier}") },
+        after_update: ->(object) { Rails.logger.debug("after update #{object.identifier}") },
         questions: [
           Wizardry::Questions::ShortAnswer.new(:address_1),
           Wizardry::Questions::ShortAnswer.new(:address_2),
