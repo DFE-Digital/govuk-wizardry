@@ -9,9 +9,8 @@ RSpec.describe(WizardryHelper, type: :helper) do
 
     before { assign(:wizard, wizard)}
 
-    specify 'should render the completion placeholder page' do
-      expect(helper.wizardry_content).to have_css('h1', text: 'Check your answers')
-      expect(helper.wizardry_content).to have_content('Add a partial called _check_your_answers.html.erb to override this message')
+    specify 'should render a summary list' do
+      expect(helper.wizardry_content).to have_css('.govuk-summary-list')
     end
   end
 

@@ -20,6 +20,7 @@ require "wizardry/questions/hidden"
 require "wizardry/routing/next_page"
 
 require "govuk_design_system_formbuilder"
+require "govuk/components"
 
 module Wizardry
   extend ActiveSupport::Concern
