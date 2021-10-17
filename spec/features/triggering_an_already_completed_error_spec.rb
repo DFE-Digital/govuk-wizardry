@@ -30,7 +30,7 @@ RSpec.describe('Errors: trying to complete an already-completed wizard', type: :
   end
 
   def responses
-    @response ||= OpenStruct.new(
+    @responses ||= OpenStruct.new(
       full_name: 'Milhaus van Houten',
       name: 'Milhaus',
 

@@ -35,7 +35,7 @@ RSpec.describe('Completing the wizard: completion', type: :feature) do
   end
 
   def responses
-    @response ||= OpenStruct.new(
+    @responses ||= OpenStruct.new(
       full_name: 'Milhaus van Houten',
       name: 'Milhaus',
 

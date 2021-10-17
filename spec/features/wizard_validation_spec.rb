@@ -21,7 +21,7 @@ RSpec.describe('Completing the wizard: validation', type: :feature) do
   end
 
   def responses
-    @response ||= OpenStruct.new(full_name: 'Milhaus van Houten', name: 'Milhaus')
+    @responses ||= OpenStruct.new(full_name: 'Milhaus van Houten', name: 'Milhaus')
   end
 
   def when_i_attempt_to_fill_in_the_identification_page
