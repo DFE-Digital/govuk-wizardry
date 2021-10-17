@@ -58,7 +58,9 @@ class RatingsController < ApplicationController
           Wizardry::Questions::Radios.new(:rating, Rating::RATINGS)
         ]
       ),
-      Wizardry::Pages::CheckYourAnswersPage.new,
+      Wizardry::Pages::CheckYourAnswersPage.new(
+        questions: [Wizardry::Questions::Hidden.new(:complete, true)]
+      ),
       Wizardry::Pages::CompletionPage.new,
     ]
   )

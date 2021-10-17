@@ -15,6 +15,7 @@ require "wizardry/questions/radios"
 require "wizardry/questions/telephone_number"
 require "wizardry/questions/email_address"
 require "wizardry/questions/date"
+require "wizardry/questions/hidden"
 
 require "wizardry/routing/next_page"
 
@@ -53,6 +54,8 @@ module Wizardry
           @wizard.object.save
           Rails.logger.debug("🧙 Object saved, trying after_update callback")
 
+          finalize_object if @wizard.complete?
+
           @wizard.current_page.after_update!(@wizard.object)
           Rails.logger.debug("🧙 Object saved and callbacks run, moving on")
         end
@@ -67,8 +70,19 @@ module Wizardry
 
   private
 
+    def finalize_object(finalize: :finalize!)
+      Rails.logger.debug("🧙 Wizard complete, finalizing object")
+
+      if @wizard.object.respond_to?(finalize)
+        @wizard.object.send(finalize)
+        Rails.logger.debug("🧙 Wizard object finalized")
+      else
+        Rails.logger.warn("🧙 Wizard object has no #{finalize} method")
+      end
+    end
+
     def check_wizard
-      @wizard.ensure_not_complete
+      @wizard.ensure_not_complete unless @wizard.current_page.is_a?(Wizardry::Pages::CompletionPage)
     end
 
     def setup_wizard

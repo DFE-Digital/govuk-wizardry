@@ -40,7 +40,11 @@ module Wizardry
     # check this wizard hasn't already been completed using the
     # object's :completion_flag
     def ensure_not_complete
-      raise Wizardry::AlreadyCompletedError if object.send(framework.completion_flag)
+      raise Wizardry::AlreadyCompletedError if complete?
+    end
+
+    def complete?
+      object.send(framework.completion_flag)
     end
 
   private

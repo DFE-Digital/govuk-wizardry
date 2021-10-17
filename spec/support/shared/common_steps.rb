@@ -1,4 +1,8 @@
 RSpec.shared_context "common wizard steps" do
+  def rating
+    Rating.last
+  end
+
   def given_i_begin_the_wizard
     visit 'rating/identification'
   end

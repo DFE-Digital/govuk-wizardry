@@ -3,9 +3,7 @@ require 'rails_helper'
 RSpec.describe('Triggering callbacks', type: :feature) do
   include_context "common wizard steps"
 
-  before do
-    allow(Rails.logger).to receive(:debug) { true }
-  end
+  before { allow(Rails.logger).to receive(:debug) { true } }
 
   scenario "after update is not triggered when validation fails" do
     given_i_begin_the_wizard

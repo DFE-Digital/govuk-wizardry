@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe('Completing the wizard: completion', type: :feature) do
   include_context "common wizard steps"
 
+  before { allow(Rails.logger).to receive(:debug) { true } }
+
   scenario "I should be able to complete every step by entering valid answers" do
     given_i_begin_the_wizard
 
@@ -32,6 +34,7 @@ RSpec.describe('Completing the wizard: completion', type: :feature) do
 
     # page 6: completion
     then_i_should_be_on_the_completion_page
+    and_the_object_should_have_been_finalized
   end
 
   def responses
@@ -50,5 +53,9 @@ RSpec.describe('Completing the wizard: completion', type: :feature) do
       customer_type: 'New',
       feedback: 'Excellent service',
     )
+  end
+
+  def and_the_object_should_have_been_finalized
+    expect(Rails.logger).to have_received(:debug).with(/object finalized #{rating.identifier}/)
   end
 end

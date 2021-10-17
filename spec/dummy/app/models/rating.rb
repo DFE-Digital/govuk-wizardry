@@ -16,4 +16,8 @@ class Rating < ApplicationRecord
   def rating
     RATINGS[self[:rating]]
   end
+
+  def finalize!
+    Rails.logger.debug("object finalized #{identifier}")
+  end
 end
