@@ -34,6 +34,7 @@ RSpec.describe('Completing the wizard: completion', type: :feature) do
 
     # page 6: completion
     then_i_should_be_on_the_completion_page
+    and_the_object_should_be_marked_as_completed
     and_the_object_should_have_been_finalized
   end
 
@@ -53,6 +54,10 @@ RSpec.describe('Completing the wizard: completion', type: :feature) do
       customer_type: 'New',
       feedback: 'Excellent service',
     )
+  end
+
+  def and_the_object_should_be_marked_as_completed
+    expect(rating).to be_complete
   end
 
   def and_the_object_should_have_been_finalized
