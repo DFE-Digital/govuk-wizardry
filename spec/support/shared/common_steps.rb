@@ -1,4 +1,8 @@
 RSpec.shared_context "common wizard steps" do
+  def rating
+    Rating.last
+  end
+
   def given_i_begin_the_wizard
     visit 'rating/identification'
   end
@@ -50,8 +54,6 @@ RSpec.shared_context "common wizard steps" do
   end
 
   def and_my_details_should_have_been_persisted
-    last_rating = Rating.last
-
     responses.each_pair do |field, value|
       expect(last_rating.send(field)).to eql(value)
     end
@@ -59,5 +61,9 @@ RSpec.shared_context "common wizard steps" do
 
   def then_i_should_be_on_the_completion_page
     expect(page).to have_css('h1', text: 'Completed')
+  end
+
+  def last_rating
+    Rating.last
   end
 end

@@ -1,7 +1,8 @@
 class RatingsController < ApplicationController
   include Wizardry
 
-  wizard name: 'ratings',
+  wizard(
+    name: 'ratings',
     class_name: 'Rating',
     edit_path_helper: :ratings_page_path,
     update_path_helper: :ratings_path,
@@ -17,6 +18,9 @@ class RatingsController < ApplicationController
       Wizardry::Pages::QuestionPage.new(
         :address,
         title: 'Address',
+        before_edit: ->(object) { Rails.logger.debug("before edit #{object.identifier}") },
+        before_update: ->(object) { Rails.logger.debug("before update #{object.identifier}") },
+        after_update: ->(object) { Rails.logger.debug("after update #{object.identifier}") },
         questions: [
           Wizardry::Questions::ShortAnswer.new(:address_1),
           Wizardry::Questions::ShortAnswer.new(:address_2),
@@ -54,7 +58,10 @@ class RatingsController < ApplicationController
           Wizardry::Questions::Radios.new(:rating, Rating::RATINGS)
         ]
       ),
-      Wizardry::Pages::CheckYourAnswersPage.new,
+      Wizardry::Pages::CheckYourAnswersPage.new(
+        questions: [Wizardry::Questions::Hidden.new(:complete, true)]
+      ),
       Wizardry::Pages::CompletionPage.new,
     ]
+  )
 end

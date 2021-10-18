@@ -10,6 +10,10 @@ module Wizardry
       def extra_args
         []
       end
+
+      def extra_kwargs
+        {}
+      end
     end
   end
 end

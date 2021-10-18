@@ -2,14 +2,15 @@ module Wizardry
   # Framework holds data on how the wizard itself is constructed. It'll
   # be the same for every instance
   class Framework
-    attr_accessor :name, :pages, :class_name, :edit_path_helper, :update_path_helper
+    attr_accessor :name, :pages, :class_name, :edit_path_helper, :update_path_helper, :completion_flag
 
-    def initialize(name:, pages:, class_name:, edit_path_helper:, update_path_helper:)
+    def initialize(completion_flag: 'complete', name:, pages:, class_name:, edit_path_helper:, update_path_helper:)
       @name               = name
       @pages              = setup_pages(pages)
       @class_name         = class_name
       @edit_path_helper   = edit_path_helper
       @update_path_helper = update_path_helper
+      @completion_flag    = completion_flag
 
       page_sense_check
     end

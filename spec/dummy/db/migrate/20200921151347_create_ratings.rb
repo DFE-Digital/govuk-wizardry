@@ -22,6 +22,8 @@ class CreateRatings < ActiveRecord::Migration[6.0]
       t.text "feedback"
       t.integer "rating"
 
+      t.boolean "complete"
+
       t.timestamps
     end
   end

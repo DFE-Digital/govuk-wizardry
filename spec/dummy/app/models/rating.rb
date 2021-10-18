@@ -10,7 +10,14 @@ class Rating < ApplicationRecord
     presence: { message: "Tell us how we should address you" },
     on: :identification
 
+  validates :address_1, presence: true, on: :address
+  validates :postcode, presence: true, on: :address
+
   def rating
     RATINGS[self[:rating]]
+  end
+
+  def finalize!
+    Rails.logger.debug("object finalized #{identifier}")
   end
 end

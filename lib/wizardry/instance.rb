@@ -37,6 +37,16 @@ module Wizardry
       route.all? { |complete_page| object.valid?(complete_page.name) }
     end
 
+    # check this wizard hasn't already been completed using the
+    # object's :completion_flag
+    def ensure_not_complete
+      raise Wizardry::AlreadyCompletedError if complete?
+    end
+
+    def complete?
+      object.send(framework.completion_flag)
+    end
+
   private
 
     def next_branch_page(page)

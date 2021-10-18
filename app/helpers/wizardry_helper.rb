@@ -13,12 +13,12 @@ module WizardryHelper
 private
 
   def render_form
-    form_for(@wizard.object, url: send(@wizard.framework.update_path_helper, page: @wizard.current_page.name), method: :patch, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |f|
+    wizard_form do |f|
       capture do
         concat f.govuk_error_summary
 
         @wizard.current_page.questions.map do |q|
-          concat f.send(q.form_method, q.name, *q.extra_args)
+          concat f.send(q.form_method, q.name, *q.extra_args, **q.extra_kwargs)
         end
 
         concat f.govuk_submit
@@ -44,6 +44,19 @@ private
         ["Add a partial called", tag.code(%(_completion.html.erb)), "to override this message"].join(" ").html_safe
       end
     ])
+  end
+
+  def wizard_form(&block)
+    form_for(
+      @wizard.object,
+      url: send(
+        @wizard.framework.update_path_helper,
+        page: @wizard.current_page.name
+      ),
+      method: :patch,
+      builder: GOVUKDesignSystemFormBuilder::FormBuilder,
+      &block
+    )
   end
 end
 
