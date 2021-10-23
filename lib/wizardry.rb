@@ -55,10 +55,10 @@ module Wizardry
           @wizard.object.save
           Rails.logger.debug("🧙 Object saved, trying after_update callback")
 
-          finalize_object if @wizard.complete?
-
           @wizard.current_page.after_update!(@wizard.object)
           Rails.logger.debug("🧙 Object saved and callbacks run, moving on")
+
+          finalize_object if @wizard.complete?
         end
 
         redirect_to send(@wizard.framework.edit_path_helper, @wizard.next_page.name)
