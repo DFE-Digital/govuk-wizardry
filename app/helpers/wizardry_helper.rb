@@ -52,17 +52,23 @@ private
     ])
   end
 
-  def wizard_form(&block)
-    form_for(
-      @wizard.object,
-      url: send(
-        @wizard.framework.update_path_helper,
-        page: @wizard.current_page.name
-      ),
-      method: :patch,
-      builder: GOVUKDesignSystemFormBuilder::FormBuilder,
-      &block
-    )
+  def wizard_form(turbo_frame_id: "wizardry-form", &block)
+    turbo_frame_tag(turbo_frame_id) do
+      safe_join(
+        [
+          form_for(
+            @wizard.object,
+            url: send(
+              @wizard.framework.update_path_helper,
+              page: @wizard.current_page.name
+            ),
+            method: :patch,
+            builder: GOVUKDesignSystemFormBuilder::FormBuilder,
+            &block
+          )
+        ]
+      )
+    end
   end
 
   def check_your_answers_key(class_name, question_name)
