@@ -28,11 +28,17 @@ private
 
   def render_check_your_answers
     safe_join([
-      tag.h1('Check your answers'),
-
-      tag.p do
-        ["Add a partial called", tag.code(%(_check_your_answers.html.erb)), "to override this message"].join(" ").html_safe
-      end
+      render(GovukComponent::SummaryListComponent.new) do |summary_list|
+        @wizard.route.each do |page|
+          page.questions.each do |question|
+            summary_list.row do |sl|
+              sl.key(text: check_your_answers_key(@wizard.object.class.name, question.name))
+              sl.value(text: @wizard.object.send(question.name))
+              sl.action(href: send(@wizard.framework.edit_path_helper, page.name))
+            end
+          end
+        end
+      end,
     ])
   end
 
@@ -46,17 +52,29 @@ private
     ])
   end
 
-  def wizard_form(&block)
-    form_for(
-      @wizard.object,
-      url: send(
-        @wizard.framework.update_path_helper,
-        page: @wizard.current_page.name
-      ),
-      method: :patch,
-      builder: GOVUKDesignSystemFormBuilder::FormBuilder,
-      &block
-    )
+  def wizard_form(turbo_frame_id: "wizardry-form", &block)
+    turbo_frame_tag(turbo_frame_id) do
+      safe_join(
+        [
+          form_for(
+            @wizard.object,
+            url: send(
+              @wizard.framework.update_path_helper,
+              page: @wizard.current_page.name
+            ),
+            method: :patch,
+            builder: GOVUKDesignSystemFormBuilder::FormBuilder,
+            &block
+          )
+        ]
+      )
+    end
+  end
+
+  def check_your_answers_key(class_name, question_name)
+    I18n.t!("helpers.legend.#{class_name.underscore}.#{question_name}")
+  rescue I18n::MissingTranslationData
+    I18n.t("helpers.label.#{class_name.underscore}.#{question_name}")
   end
 end
 
