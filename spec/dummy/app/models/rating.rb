@@ -14,6 +14,10 @@ class Rating < ApplicationRecord
     inclusion: { in: [true], message: "Please answer the questions truthfully" },
     on: :name_check
 
+  validates :are_you_sure,
+    inclusion: { in: [true], message: "Enter an answer" },
+    on: :are_you_sure
+
   validates :address_1, presence: true, on: :address
   validates :postcode, presence: true, on: :address
 

@@ -4,6 +4,7 @@ en:
       rating:
         full_name: What is your full name?
         name: What should we call you?
+        are_you_sure: Are you sure?
 
         address_1: Address line one
         address_2: Address line two
