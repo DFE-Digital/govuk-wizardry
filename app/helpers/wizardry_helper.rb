@@ -15,15 +15,30 @@ private
   def render_form
     wizard_form do |f|
       capture do
-        concat f.govuk_error_summary
+        if lookup_context.template_exists?(partial_file_path)
+          Rails.logger.warn("🧙 Partial #{partial_file_path} found; rendering")
 
-        @wizard.current_page.questions.map do |q|
-          concat f.send(q.form_method, q.name, *q.extra_args, **q.extra_kwargs)
+          concat(render(partial: partial_render_path, locals: { f: f }))
+        else
+          Rails.logger.warn("🧙 No overriding partial found; rendering form")
+          concat(f.govuk_error_summary)
+
+          @wizard.current_page.questions.map do |q|
+            concat(f.send(q.form_method, q.name, *q.extra_args, **q.extra_kwargs))
+          end
+
+          concat(f.govuk_submit)
         end
-
-        concat f.govuk_submit
       end
     end
+  end
+
+  def partial_file_path(suffix: "form")
+    "#{@wizard.framework.name}/_#{@wizard.current_page.name}_#{suffix}"
+  end
+
+  def partial_render_path(suffix: "form")
+    "#{@wizard.framework.name}/#{@wizard.current_page.name}_#{suffix}"
   end
 
   def render_check_your_answers
