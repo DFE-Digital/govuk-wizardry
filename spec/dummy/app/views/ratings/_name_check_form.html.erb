@@ -1,0 +1,8 @@
+<%= f.govuk_error_summary %>
+
+<%= f.govuk_radio_buttons_fieldset(:name_check) do %>
+  <%= f.govuk_radio_button(:name_check, true, label: { text: "Yes, it's really my name" }) %>
+  <%= f.govuk_radio_button(:name_check, false, label: { text: "No, my name's something else entirely" }) %>
+<% end %>
+
+<%= f.govuk_submit %>
