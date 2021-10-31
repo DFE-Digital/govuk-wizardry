@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2020_09_21_151347) do
     t.string "last_completed_step"
     t.string "full_name"
     t.string "name"
+    t.boolean "name_check"
+    t.boolean "are_you_sure"
     t.string "address_1"
     t.string "address_2"
     t.string "town"

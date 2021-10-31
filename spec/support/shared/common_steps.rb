@@ -6,6 +6,7 @@ RSpec.shared_context "common wizard steps" do
   def given_i_begin_the_wizard
     visit 'rating/identification'
   end
+  alias_method :and_i_begin_the_wizard, :given_i_begin_the_wizard
 
   def when_i_fill_in_the_identification_page
     fill_in 'What is your full name?', with: responses.full_name
@@ -30,6 +31,11 @@ RSpec.shared_context "common wizard steps" do
     # ignore date for the moment, it's non-trivial to fill in
     choose responses.rating
   end
+
+  def when_i_select(option)
+    choose(option)
+  end
+  alias_method :when_i_choose, :when_i_select
 
   def and_i_submit_the_form
     click_on 'Continue'

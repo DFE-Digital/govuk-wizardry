@@ -13,7 +13,27 @@ class RatingsController < ApplicationController
         questions: [
           Wizardry::Questions::ShortAnswer.new(:full_name),
           Wizardry::Questions::EmailAddress.new(:name)
-        ]
+        ],
+        next_pages: [
+          Wizardry::Routing::NextPage.new(:name_check, proc { |o| o.full_name =~ /(John|Jane) Doe/ }),
+          Wizardry::Routing::NextPage.new(:are_you_sure, proc { |o| o.full_name == "Joe Bloggs" })
+        ],
+        pages: [
+          Wizardry::Pages::QuestionPage.new(
+            :name_check,
+            title: 'Is that your real name?',
+            questions: [
+              Wizardry::Questions::Radios.new(:name_check, { true => 'Yes', false => 'No' })
+            ],
+          ),
+          Wizardry::Pages::QuestionPage.new(
+            :are_you_sure,
+            title: 'Are you sure?',
+            questions: [
+              Wizardry::Questions::Radios.new(:are_you_sure, { true => 'Yes', false => 'No' })
+            ],
+          )
+        ],
       ),
       Wizardry::Pages::QuestionPage.new(
         :address,

@@ -7,6 +7,9 @@ class CreateRatings < ActiveRecord::Migration[6.0]
       t.string "full_name"
       t.string "name"
 
+      t.boolean "name_check"
+      t.boolean "are_you_sure"
+
       t.string "address_1"
       t.string "address_2"
       t.string "town"
