@@ -5,8 +5,9 @@ module Wizardry
 
       def initialize(name, value)
         Rails.logger.debug("🧙 Adding hidden field '#{name}'")
-        @name  = name
         @value = value
+
+        super(name)
       end
 
       def form_method

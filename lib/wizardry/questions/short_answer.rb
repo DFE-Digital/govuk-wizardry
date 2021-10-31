@@ -4,7 +4,7 @@ module Wizardry
     class ShortAnswer < Wizardry::Questions::Answer
       def initialize(name)
         Rails.logger.debug("🧙 Adding short question '#{name}'")
-        super
+        super(name)
       end
 
       def form_method

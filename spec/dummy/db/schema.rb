@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_151347) do
-
+ActiveRecord::Schema.define(version: 20_200_921_151_347) do
   create_table "ratings", force: :cascade do |t|
     t.string "identifier", null: false
     t.string "last_completed_step"
@@ -34,5 +33,4 @@ ActiveRecord::Schema.define(version: 2020_09_21_151347) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
 end

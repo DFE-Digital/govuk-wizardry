@@ -52,7 +52,7 @@ module Wizardry
 
       if @wizard.object.valid?(@wizard.current_page.name)
         @wizard.object.transaction do
-          @wizard.object.save
+          @wizard.object.save!
           Rails.logger.debug("🧙 Object saved, trying after_update callback")
 
           @wizard.current_page.after_update!(@wizard.object)

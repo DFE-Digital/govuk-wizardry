@@ -3,15 +3,13 @@ require 'rails_helper'
 RSpec.describe(WizardryHelper, type: :helper) do
   include_context 'setup simple wizard'
 
-  subject { helper.wizardry_content }
+  subject { helper.wizardry_content(wizard) }
 
   let(:object) { SomeObject.new(field_one: 'abc', field_two: 'def', field_three: 'ghi') }
 
   describe "#wizardry_content" do
     describe 'rendering a questions page' do
       let(:wizard) { Wizardry::Instance.new(object: object, framework: framework, current_page: :page_two) }
-
-      before { assign(:wizard, wizard) }
 
       specify 'renders a form wrapped in a turbo-frame-tag' do
         expect(subject).to have_css('turbo-frame-tag > form')
@@ -45,8 +43,6 @@ RSpec.describe(WizardryHelper, type: :helper) do
     describe 'rendering the check your answers page' do
       let(:wizard) { Wizardry::Instance.new(object: object, framework: framework, current_page: :check_your_answers) }
 
-      before { assign(:wizard, wizard) }
-
       specify 'renders a summary list' do
         expect(subject).to have_css('.govuk-summary-list')
       end
@@ -54,8 +50,6 @@ RSpec.describe(WizardryHelper, type: :helper) do
 
     describe 'rendering the completion page' do
       let(:wizard) { Wizardry::Instance.new(object: object, framework: framework, current_page: :completion) }
-
-      before { assign(:wizard, wizard) }
 
       specify 'renders the completion placeholder page' do
         expect(subject).to have_css('h1', text: 'Completed')
