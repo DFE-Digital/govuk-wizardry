@@ -39,7 +39,7 @@ RSpec.describe('Completing the wizard: with optional pages', type: :feature) do
   end
 
   def then_i_should_be_on_the_london_borough_page
-    expect(page.current_path).to eql('/rating/london_borough')
+    expect(page.current_path).to eql('/rating/london-borough')
   end
 
   def when_i_fill_in_my_london_borough

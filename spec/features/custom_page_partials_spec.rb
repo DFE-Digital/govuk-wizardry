@@ -40,7 +40,7 @@ private
   end
 
   def then_i_should_be_on_the_are_you_sure_page
-    expect(page.current_path).to eql('/rating/are_you_sure')
+    expect(page.current_path).to eql('/rating/are-you-sure')
   end
 
   def when_i_dont_enter_anything; end

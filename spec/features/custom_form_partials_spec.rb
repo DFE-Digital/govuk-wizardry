@@ -40,7 +40,7 @@ private
   end
 
   def then_i_should_be_on_the_name_check_page
-    expect(page.current_path).to eql('/rating/name_check')
+    expect(page.current_path).to eql('/rating/name-check')
   end
 
   def and_i_see_the_customised_form_partial_content

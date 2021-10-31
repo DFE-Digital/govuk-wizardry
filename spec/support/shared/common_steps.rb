@@ -47,7 +47,7 @@ RSpec.shared_context "common wizard steps" do
   end
 
   def then_i_should_be_on_the_contact_details_page
-    expect(page.current_path).to eql('/rating/contact_details')
+    expect(page.current_path).to eql('/rating/contact-details')
   end
 
   def then_i_should_be_on_the_feedback_page
@@ -55,7 +55,7 @@ RSpec.shared_context "common wizard steps" do
   end
 
   def then_i_should_be_on_the_check_your_answers_page
-    expect(page.current_path).to eql('/rating/check_your_answers')
+    expect(page.current_path).to eql('/rating/check-your-answers')
     expect(page).to have_css('h1', text: 'Check your answers')
   end
 
