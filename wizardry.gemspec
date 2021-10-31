@@ -38,4 +38,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "capybara"
   spec.add_development_dependency "rails-controller-testing"
   spec.add_development_dependency "webrick"
+  spec.add_development_dependency "rubocop-govuk"
 end
