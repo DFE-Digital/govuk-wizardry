@@ -61,7 +61,7 @@ module Wizardry
           finalize_object if @wizard.complete?
         end
 
-        redirect_to send(@wizard.framework.edit_path_helper, @wizard.next_page.name)
+        redirect_to send(@wizard.framework.edit_path_helper, @wizard.next_page.name.to_s.dasherize)
       else
         Rails.logger.debug("🧙 Object not valid, try again")
 
@@ -93,7 +93,7 @@ module Wizardry
 
       Rails.logger.debug("🧙 Initialising the wizard 🪄")
 
-      @wizard = Wizardry::Instance.new(current_page: params[:page], object: object, framework: @framework)
+      @wizard = Wizardry::Instance.new(current_page: params[:page].underscore, object: object, framework: @framework)
     end
 
     def object_params
