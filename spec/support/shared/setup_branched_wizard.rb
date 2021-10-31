@@ -13,7 +13,7 @@ RSpec.shared_context('setup branched wizard') do
         Wizardry::Pages::QuestionPage.new(
           :page_two, title: 'Page Two', questions: [Wizardry::Questions::ShortAnswer.new(:field_two)],
           next_pages: [
-            Wizardry::Routing::NextPage.new(:page_three, proc { |o| o.field_two == "Shazam" })
+            Wizardry::Routing::NextPage.new(:page_three, proc { |o| o.field_two == "Shazam" }, label: "Magic word?")
           ],
           pages: [
             Wizardry::Pages::QuestionPage.new(

@@ -15,8 +15,8 @@ class RatingsController < ApplicationController
           Wizardry::Questions::EmailAddress.new(:name)
         ],
         next_pages: [
-          Wizardry::Routing::NextPage.new(:name_check, proc { |o| o.full_name =~ /(John|Jane) Doe/ }),
-          Wizardry::Routing::NextPage.new(:are_you_sure, proc { |o| o.full_name == "Joe Bloggs" })
+          Wizardry::Routing::NextPage.new(:name_check, proc { |o| o.full_name =~ /(John|Jane) Doe/ }, label: "Name is John or Jane Doe?"),
+          Wizardry::Routing::NextPage.new(:are_you_sure, proc { |o| o.full_name == "Joe Bloggs" }, label: "Name is Joe Bloggs?"),
         ],
         pages: [
           Wizardry::Pages::QuestionPage.new(
@@ -57,7 +57,7 @@ class RatingsController < ApplicationController
           )
         ],
         next_pages: [
-          Wizardry::Routing::NextPage.new(:london_borough, proc { |o| o.town == "London" })
+          Wizardry::Routing::NextPage.new(:london_borough, proc { |o| o.town == "London" }, label: "Town is London?")
         ],
       ),
       Wizardry::Pages::QuestionPage.new(
