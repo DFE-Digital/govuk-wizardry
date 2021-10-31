@@ -10,7 +10,7 @@ RSpec.describe('Completing the wizard: custom form partials', type: :feature) do
     # page 1: identification
     when_i_fill_in_the_identification_page
     and_i_submit_the_form
- 
+
     # Note the wizard is set to go to the :name_check step when the full name
     # of 'John Doe' or 'Jane Doe' is submitted
     #
@@ -36,7 +36,7 @@ private
   end
 
   def given_a_partial_exists_for_the_name_check_form
-    expect(File).to exist(Rails.root.join("app", "views", "ratings", "_name_check_form.html.erb"))
+    expect(File).to exist(Rails.root.join("app/views/ratings/_name_check_form.html.erb"))
   end
 
   def then_i_should_be_on_the_name_check_page

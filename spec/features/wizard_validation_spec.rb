@@ -34,7 +34,7 @@ RSpec.describe('Completing the wizard: validation', type: :feature) do
 
   def then_i_should_see_an_error_summary_with_two_errors
     within('.govuk-error-summary') do
-      expected_error_messages.values.each do |message|
+      expected_error_messages.each_value do |message|
         expect(page).to have_css('ul.govuk-error-summary__list > li', text: message)
       end
     end

@@ -10,7 +10,7 @@ module Wizardry
     def to_dot
       <<~GRAPH
         digraph name {
-          #{build_edges.flatten.join(";")};
+          #{build_edges.flatten.join(';')};
         }
       GRAPH
     end
@@ -43,7 +43,7 @@ module Wizardry
       end
     end
 
-    def following_page(page, index)
+    def following_page(_page, index)
       next_non_branch_page = @framework.pages[index.next..].detect { |p| !p.branch? }
 
       if next_non_branch_page.present?

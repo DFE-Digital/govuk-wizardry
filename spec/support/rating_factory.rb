@@ -7,7 +7,7 @@ class RatingFactory
     end
 
     def attrs
-      case self.last_completed_step
+      case last_completed_step
       when 'started'
         minimim
       when 'identification'

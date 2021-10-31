@@ -22,6 +22,8 @@ Style/TrailingCommaInArrayLiteral:
   Enabled: false
 Naming/MethodParameterName:
   Enabled: false
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
 Style/PercentLiteralDelimiters:
   Enabled: false
 Layout/HashAlignment:

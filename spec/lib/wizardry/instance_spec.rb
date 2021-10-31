@@ -62,7 +62,7 @@ describe Wizardry::Instance do
           let(:current_page_name) { current_page_name }
           let(:object_attributes) { options.object_attributes }
 
-          specify %(correctly identifies the route as #{(options.route.empty?) ? 'empty' : options.route.join("->")}) do
+          specify %(correctly identifies the route as #{options.route.empty? ? 'empty' : options.route.join('->')}) do
             expect(subject.route.map(&:name)).to eql(options.route)
           end
         end

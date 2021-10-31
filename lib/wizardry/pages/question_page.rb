@@ -3,8 +3,8 @@ module Wizardry
     class QuestionPage < Page
       attr_accessor :name, :questions, :title, :next_pages
 
-      def initialize(name, title: nil, questions:, next_pages: {}, pages: [], before_edit: nil, before_update: nil, after_update: nil)
-        Rails.logger.debug("🧙 Adding page '#{name}' with #{questions&.size || 'no' } questions")
+      def initialize(name, questions:, next_pages: {}, pages: [], title: nil, before_edit: nil, before_update: nil, after_update: nil)
+        Rails.logger.debug("🧙 Adding page '#{name}' with #{questions&.size || 'no'} questions")
 
         @name       = name
         @title      = title || name.capitalize
