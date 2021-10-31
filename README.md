@@ -12,13 +12,10 @@ properly tested and is very likely to change**.
 * correctly annotates the pages using Rails' I18n functionality ✔
 * deals with form submissions ✔
 * applies contextual validation on a per-page basis and displaying error messages ✔
-
-## Things the library will do, eventually
-
-* provide a callbacks upon step and wizard completion
-* allow conditional logic to customise the path through the journey
-* let developers override pages and questions with their own partials
-* allow for extra customisation over the size of labels, legends and captions
+* let developers override pages and questions with their own partials ✔
+* allow for extra customisation over the size of labels, legends and captions ✔
+* allow conditional logic to customise the path through the journey ✔
+* provide a callbacks upon step and wizard completion ✔
 
 ## How does it work?
 
