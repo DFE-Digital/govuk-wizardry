@@ -19,7 +19,6 @@ module Wizardry
 
     def reticulate
       @framework.pages.each.with_index.with_object({}) do |(current, i), g|
-        # { current: { possible_next_page_1: condition } }
         g[current.name] = specified_next_pages(current).merge(following_page(current, i))
       end
     end
@@ -29,7 +28,7 @@ module Wizardry
         targets.map do |target_page, condition|
           %(#{source} -> #{target_page}).tap do |edge|
             if condition.present?
-              formatted_condition = condition.source.match(/proc {.*}/).to_s.dump
+              formatted_condition = %("#{condition}")
               edge << %( [label=#{formatted_condition}])
             end
           end
@@ -39,7 +38,7 @@ module Wizardry
 
     def specified_next_pages(page)
       page.next_pages.each.with_object({}) do |np, h|
-        h[np.name] = np.condition
+        h[np.name] = np.label
       end
     end
 
