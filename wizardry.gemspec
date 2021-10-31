@@ -14,29 +14,20 @@ Gem::Specification.new do |spec|
   spec.description = "A gem that allows an entire GOV.UK wizard/journey to be easily defined and built"
   spec.license     = "MIT"
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
-  end
+  spec.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-
-  spec.add_dependency "rails", ">= 7.0.0a2"
-  spec.add_dependency "govuk_design_system_formbuilder", "~> 2.7.5"
   spec.add_dependency "govuk-components", "~> 2.1.3"
+  spec.add_dependency "govuk_design_system_formbuilder", "~> 2.7.5"
+  spec.add_dependency "rails", ">= 7.0.0a2"
 
-  spec.add_development_dependency "sqlite3"
-  spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "rspec-expectations"
-  spec.add_development_dependency "shoulda-matchers"
-  spec.add_development_dependency "pry-rails"
-  spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "capybara"
+  spec.add_development_dependency "pry-byebug"
+  spec.add_development_dependency "pry-rails"
   spec.add_development_dependency "rails-controller-testing"
-  spec.add_development_dependency "webrick"
+  spec.add_development_dependency "rspec-expectations"
+  spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "rubocop-govuk"
+  spec.add_development_dependency "shoulda-matchers"
+  spec.add_development_dependency "sqlite3"
+  spec.add_development_dependency "webrick"
 end
