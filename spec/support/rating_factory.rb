@@ -52,7 +52,11 @@ class RatingFactory
     end
   end
 
-  def self.build(last_completed_step: 'identification')
-    Rating.new(**RatingAttributeBuilder.new(last_completed_step).attrs)
+  def self.build(last_completed_step: 'identification', **kwargs)
+    Rating.new(**RatingAttributeBuilder.new(last_completed_step).attrs.merge(kwargs))
+  end
+
+  def self.create(...)
+    build(...).save!
   end
 end
