@@ -71,12 +71,12 @@ module Wizardry
 
   private
 
-    def finalize_object(finalize: :finalize!)
+    def finalize_object(finalize_method: :finalize!)
       Rails.logger.debug("🧙 Wizard complete, finalizing object")
 
-      if @wizard.object.respond_to?(finalize)
-        @wizard.object.send(finalize)
-        Rails.logger.debug("🧙 Wizard object finalized")
+      if @wizard.object.respond_to?(finalize_method)
+        Rails.logger.debug("🧙 Finalizing object")
+        @wizard.object.send(finalize_method)
       else
         Rails.logger.warn("🧙 Wizard object has no #{finalize} method")
       end
