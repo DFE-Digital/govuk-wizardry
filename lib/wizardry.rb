@@ -58,7 +58,7 @@ module Wizardry
           @wizard.current_page.after_update!(@wizard.object)
           Rails.logger.debug("🧙 Object saved and callbacks run, moving on")
 
-          finalize_object if @wizard.complete?
+          finish if @wizard.complete?
         end
 
         redirect_to send(@wizard.framework.edit_path_helper, @wizard.next_page.name.to_s.dasherize)
@@ -71,14 +71,22 @@ module Wizardry
 
   private
 
-    def finalize_object(finalize: :finalize!)
-      Rails.logger.debug("🧙 Wizard complete, finalizing object")
+    def finish
+      Rails.logger.debug("🧙 Wizard complete, finishing off")
 
-      if @wizard.object.respond_to?(finalize)
-        @wizard.object.send(finalize)
-        Rails.logger.debug("🧙 Wizard object finalized")
+      finalize_object!
+      clear_identifier!
+    end
+
+    def finalize_object!(finalize_method: :finalize!)
+      Rails.logger.debug("🧙 Trying to finalize object")
+
+      if @wizard.object.respond_to?(finalize_method)
+        Rails.logger.debug("🧙 Object has #{finalize_method} method - calling it")
+
+        @wizard.object.send(finalize_method)
       else
-        Rails.logger.warn("🧙 Wizard object has no #{finalize} method")
+        Rails.logger.warn("🧙 Wizard object has no #{finalize_method} method")
       end
     end
 
@@ -109,7 +117,21 @@ module Wizardry
     end
 
     def identifier
-      cookies.fetch(wizard.cookie_name) { cookies[wizard.cookie_name] = SecureRandom.uuid }
+      cookies.fetch(wizard.cookie_name) { set_identifier! }
+    end
+
+    def set_identifier!
+      identifier = SecureRandom.uuid
+
+      Rails.logger.debug("🧙 Setting cookie #{identifier}")
+
+      cookies[wizard.cookie_name] = identifier
+    end
+
+    def clear_identifier!
+      Rails.logger.debug("🧙 Clearing cookie")
+
+      cookies.delete(wizard.cookie_name)
     end
   end
 end

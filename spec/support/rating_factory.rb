@@ -9,17 +9,17 @@ class RatingFactory
     def attrs
       case last_completed_step
       when 'started'
-        minimim
+        minimum
       when 'identification'
-        minimim.merge(**identification)
+        minimum.merge(**identification)
       when 'address'
-        minimim.merge(**identification, **address)
+        minimum.merge(**identification, **address)
       when 'contact_details'
-        minimim.merge(**identification, **address, **contact_details)
+        minimum.merge(**identification, **address, **contact_details)
       when 'rating'
-        minimim.merge(**identification, **address, **contact_details, **rating)
+        minimum.merge(**identification, **address, **contact_details, **rating)
       when 'check_your_answers'
-        minimim.merge(**identification, **address, **contact_details, **rating, **check_your_answers)
+        minimum.merge(**identification, **address, **contact_details, **rating, **check_your_answers)
       else
         fail ArgumentError, "unknown page #{last_completed_step}"
       end
@@ -27,7 +27,7 @@ class RatingFactory
 
   private
 
-    def minimim
+    def minimum
       { identifier: SecureRandom.uuid }
     end
 
@@ -52,7 +52,11 @@ class RatingFactory
     end
   end
 
-  def self.build(last_completed_step: 'identification')
-    Rating.new(**RatingAttributeBuilder.new(last_completed_step).attrs)
+  def self.build(last_completed_step: 'identification', **kwargs)
+    Rating.new(**RatingAttributeBuilder.new(last_completed_step).attrs.merge(kwargs))
+  end
+
+  def self.create(...)
+    build(...).save!
   end
 end
