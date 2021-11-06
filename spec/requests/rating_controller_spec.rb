@@ -1,15 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe(RatingsController, type: :request) do
-  describe 'GET edit' do
+  describe 'rendering the first page of the wizard' do
     before { get '/rating/identification' }
 
     specify 'renders the edit template' do
       expect(response).to render_template(:edit)
     end
 
-    context %(when the respondant navigates to a step they've not yet reached) do
-      specify 'they should be redirected back to their correct place'
+    specify 'sets the identification cookie' do
+      expect(cookies['ratings-wizard']).to be_present
+    end
+  end
+
+  describe 'completing the wizard' do
+    before do
+      get '/rating/identification'
+
+      RatingFactory.create(last_completed_step: 'rating', identifier: cookies['ratings-wizard'])
+    end
+
+    specify 'clears the identification cookie' do
+      expect(cookies['ratings-wizard']).to be_present
+
+      patch '/rating/check-your-answers', params: { rating: { complete: true } }
+
+      expect(cookies['ratings-wizard']).to be_blank
     end
   end
 end
