@@ -44,7 +44,7 @@ module Wizardry
     end
 
     def complete?
-      object.send(framework.completion_flag)
+      !!object.send(framework.completion_flag)
     end
 
   private
