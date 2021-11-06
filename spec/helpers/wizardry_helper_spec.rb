@@ -53,7 +53,7 @@ RSpec.describe(WizardryHelper, type: :helper) do
 
       specify 'renders the completion placeholder page' do
         expect(subject).to have_css('h1', text: 'Completed')
-        expect(subject).to have_content('Add a partial called _completion.html.erb to override this message')
+        expect(subject).to have_content('Add a partial called _completion_page.html.erb to override this message')
       end
     end
   end

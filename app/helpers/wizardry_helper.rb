@@ -62,7 +62,7 @@ private
             tag.p do
               [
                 'Add a partial called',
-                tag.code(%(_completion.html.erb)),
+                tag.code(%(_completion_page.html.erb)),
                 'to override this message'
               ].join(' ').html_safe
             end
