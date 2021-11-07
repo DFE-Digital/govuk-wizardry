@@ -15,6 +15,16 @@ module Wizardry
       next_branch_page(page) || next_trunk_page(page)
     end
 
+    def next_incomplete_page(page = current_page)
+      np = next_page(page)
+
+      loop do
+        break np unless valid_on?(np.name)
+
+        np = next_page(np)
+      end
+    end
+
     # find all the pages we've visited on our way to
     # the current page
     def route(from = framework.pages.first)
@@ -33,8 +43,12 @@ module Wizardry
       end
     end
 
-    def valid_so_far?
-      route.all? { |complete_page| object.valid?(complete_page.name) }
+    def valid_so_far?(from = framework.pages.first)
+      route(from).all? { |complete_page| valid_on?(complete_page.name) }
+    end
+
+    def valid_on?(page_name)
+      object.valid?(page_name)
     end
 
     # check this wizard hasn't already been completed using the
