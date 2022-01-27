@@ -42,7 +42,7 @@ RSpec.describe('Completing the wizard: validation', type: :feature) do
 
   def and_error_messages_should_accompany_the_form_inputs
     expected_error_messages.each do |attribute, message|
-      selector = %(.govuk-form-group > span#rating-#{attribute.dasherize}-error.govuk-error-message)
+      selector = %(.govuk-form-group > p#rating-#{attribute.dasherize}-error.govuk-error-message)
 
       expect(page).to have_css(selector, text: message)
     end
