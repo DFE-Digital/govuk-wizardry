@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    govuk-wizardry (0.1.1)
+    govuk-wizardry (0.1.2)
       govuk-components (~> 3.0.1)
       govuk_design_system_formbuilder (~> 3.0.1)
       rails (>= 7.0.0)
