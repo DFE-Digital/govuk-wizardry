@@ -32,6 +32,15 @@ describe Wizardry::Instance do
     end
   end
 
+  describe '#next_incomplete_page' do
+    let(:current_page_name) { :page_two }
+    let(:object_attributes) { { field_one: 'abc', field_two: 'def' } }
+
+    specify "correctly identifies the next incomplete page" do
+      expect(subject.next_incomplete_page.name).to eql(:page_three)
+    end
+  end
+
   describe '#route' do
     it { is_expected.to respond_to(:route).with(0..1).arguments }
 
